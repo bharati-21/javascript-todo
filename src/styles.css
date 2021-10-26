@@ -1,0 +1,120 @@
+:root {
+    /* --light-theme-primary-color: #1EAFED; */
+    --light-theme-primary-color: #1597E5;
+    --light-theme-background-color: #EFEFEF;
+    --light-theme-secondary-color: #19456B;
+    --light-theme-todo-list-background: #fff;
+
+    --dark-theme-background-color: #0F172A;
+    --dark-theme-primary-color: #FEE440
+}
+
+html {
+    font-family: 'Montserrat', sans-serif;
+    box-sizing: border-box;
+}
+
+*, *::after, *::before {
+    font-family: inherit;
+    box-sizing: inherit;
+    padding: 0;
+    margin: 0;
+}
+
+/* UTILITY CLASSES */
+
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+ul {
+    list-style: none;
+}
+
+body.light-theme {
+    background-color: var(--light-theme-background-color);
+    color: var(--light-theme-primary-color);
+}
+
+body.dark-theme {
+    background-color: var(--dark-theme-background-color);
+    color: var(--dark-theme-primary-color);
+}
+
+#todo-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+    min-height: 100vh;
+    width: 100%;
+    text-align: center;
+}
+
+
+.todos-main {
+    margin: 1rem auto;
+    width: 100%;
+}
+
+.todo-container {
+    background-color: var(--light-theme-todo-list-background);
+    max-width: 600px;
+    border-radius: 1rem;
+    
+    padding: 1rem;
+    margin: auto;
+}
+
+.todos-main .todo-list-header {
+    margin: 1rem auto;
+    display: flex;
+}
+
+.todo-list-header .task-input {
+    flex:4;
+    margin-right: 0.5rem;
+}
+
+.todo-list-header .todo-input-element {
+    border-radius: 1rem;
+    -webkit-border-radius: 1rem;
+    -moz-border-radius: 1rem;
+    -ms-border-radius: 1rem;
+    -o-border-radius: 1rem;
+    padding: 0.75rem 1rem;;
+}
+
+body.light-theme .todo-list-header .todo-input-element {
+    border-color: var(--dark-theme-background-color);
+    outline:none;
+}
+
+.todo-list-header .btn-add-task {
+    flex: 1;
+    margin-left: 0.5rem;
+}
+
+.todo-list-container {
+}
+
+.todo-list li {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--light-theme-background-color);
+    border-top: 1px solid var(--light-theme-background-color);
+}
+
+.todo-list li:last-child {
+    margin-bottom: 0;
+}
+
+body.light-theme footer {
+    background-color: var(--light-theme-primary-color);
+    color: var(--light-theme-background-color);
+    width: 100%;
+    padding: 1rem;
+}
