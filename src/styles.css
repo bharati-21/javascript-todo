@@ -222,8 +222,16 @@ li.todo-list-item {
     border-top: 1px solid #787878;
 }
 
+li.todo-list-item.completed, li.todo-list-item.completed i.fas:hover  {
+    color: #E02401;
+}
+
 li.todo-list-item.active, li.todo-list-item.active i.fas:hover  {
     color: #69e451;
+}
+
+li.todo-list-item.completed  p.todo-checkbox-item > span.todo-item {
+    text-decoration: line-through;
 }
 
 li.todo-list-item:last-child {
@@ -233,6 +241,7 @@ li.todo-list-item:last-child {
 
 li.todo-list-item i.fas {
     color: #787878;
+    cursor: pointer;
 }
 
 li.todo-list-item p * {
@@ -240,13 +249,14 @@ li.todo-list-item p * {
     position: relative;
 }
 
-p.todo-checkbox-item i.fas.fa-check-circle{
-    margin-right: 0.25rem;
+p.todo-checkbox-item i.fas.fa-check-circle {
+    margin-right: 0.5rem;
 }
 
-a.todo-checkbox-item.checked + span.todo-item {
-    text-decoration: line-through;
+p.todo-edit-delete-icons .todo-edit-icon i.fas.fa-edit{
+    margin-right: 0.5rem;
 }
+
 
 footer.footer {
     padding: 1rem;

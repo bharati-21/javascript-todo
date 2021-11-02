@@ -34,5 +34,5 @@ function addTaskToList(task) {
 
 function generateUUID() {
     const now = Date.now();
-    console.log(Math.floor(Math.random() * Math.floor(Math.random() * now)));
+    return Math.floor(Math.random() * Math.floor(Math.random() * now));
 }
