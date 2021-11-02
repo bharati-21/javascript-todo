@@ -6,19 +6,23 @@
     --light-theme-todo-list-background: #fff;
 
     --dark-theme-background-color: #0F172A;
-    --dark-theme-primary-color: #FEE440
+    --dark-theme-primary-color: #FEE440;
 }
 
 html {
-    font-family: 'Montserrat', sans-serif;
     box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;   
 }
 
-*, *::after, *::before {
+* {
     font-family: inherit;
     box-sizing: inherit;
     padding: 0;
     margin: 0;
+}
+
+*::after, *::before {
+    box-sizing: inherit;
 }
 
 /* UTILITY CLASSES */
@@ -34,183 +38,221 @@ ul {
 
 a {
     text-decoration: none;
+    color: var(--light-theme-primary-color);
+}
+
+a,a:active, a:visited {
+    color: var(--light-theme-primary-color);
 }
 
 button { 
     cursor: pointer;
 }
 
-body.light-theme a , body.light-theme a:visited {
-    color: var(--light-theme-primary-color);
+#body-wrapper {
+    min-height: 100vh;
+    display: flex;
+    /* align-items: center; */
+    flex-direction: column;
+    justify-content: space-between;
 }
 
-body.dark-theme a , body.dark-theme a:visited {
-    color: var(--dark-theme-primary-color);
-}
-
-body.light-theme {
+body {
     background-color: var(--light-theme-background-color);
     color: var(--light-theme-primary-color);
 }
 
-body.dark-theme {
-    background-color: var(--dark-theme-background-color);
-    color: var(--dark-theme-primary-color);
-}
-
-#todo-wrapper {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-
-    min-height: 100vh;
-    width: 100%;
-    text-align: center;
-}
-
-body.light-theme header.hero {
-    background-color: var(--light-theme-primary-color);
-    color: var(--light-theme-background-color);
-}
-
 header.hero {
-    padding: 1rem;
-    width: 100%;
-    max-height: 10vh;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 1rem 2rem;
+    border-bottom: 1px solid var(--light-theme-secondary-color);
 }
 
-.todos-main {
-    margin: 1rem auto;
-    width: 100%;
-    max-width: 600px;
-}
-
-body.light-theme .todo-list-header, body.light-theme .todo-list-main {
-    background-color: var(--light-theme-todo-list-background);
-
-    box-shadow: 0px 0px 5px rgba(0,0,0,0.5)
-
-}
-
-.todos-main .todo-list-header {
-    margin-bottom: 1rem;
+/* Theme Toggle */
+label.theme-toggler {
+    position: relative;
     display: flex;
-    padding: 1rem;
-    border-radius: 0.5rem;
-    -webkit-border-radius: 0.5rem;
-    -moz-border-radius: 0.5rem;
-    -ms-border-radius: 0.5rem;
-    -o-border-radius: 0.5rem;
+    width: 3rem;
+    justify-content: space-between;
+    height: 1.5rem;
 }
 
-.todo-list-header .todo-input-element {
-    padding: 0.75rem 1rem;
+#theme-toggle-checkbox {
+    opacity: 0;
+    width: 0;
+    height: 0;
 }
 
-body.light-theme .btn-add-task {
-    background-color: var(--light-theme-secondary-color);
-    color: var(--light-theme-background-color);
+.fas {
+    position: absolute;
 }
 
-body.light-theme .todo-list-header .todo-input-element {
-    border-color: var(--light-theme-secondary-color);
-    outline:none;
-}
-
-.todo-list-header .btn-add-task {
-    flex: 1;
-    border-left: none;
-    border-top-right-radius: 0.5rem;
-    border-bottom-right-radius: 0.5rem;
-}
-
-.todo-list-header .task-input {
-    flex:4;
-    border-top-left-radius: 0.5rem;
-    border-bottom-left-radius: 0.5rem;
-}
-
-.todo-list-main {
-    border-radius: 0.5rem;
-    -webkit-border-radius: 0.5rem;
-    -moz-border-radius: 0.5rem;
-    -ms-border-radius: 0.5rem;
-    -o-border-radius: 0.5rem;
-    padding-top: 1rem;
-}
-
-
-
-.todo-list-main .todo-info .btn-clear-tasks {
-    padding: 0.5rem 0.75rem;
+span.theme-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
     border-radius: 1rem;
-    outline: none;
-    border: none;
+    background-color: #adb3b9;
+    transition: all 0.6s;
+    -webkit-transition: all 0.6s;
+    -moz-transition: all 0.6s;
+    -ms-transition: all 0.6s;
+    -o-transition: all 0.6s;
+}
+
+span.theme-slider::before {
+    background-color: #1597E5;
+    width: 1.5rem;
+    height: 1.5rem;
+    top: 0;
+    right: 0;
+    border-radius: 1rem;
+    content:"";
+    position: absolute;
     -webkit-border-radius: 1rem;
     -moz-border-radius: 1rem;
     -ms-border-radius: 1rem;
     -o-border-radius: 1rem;
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -o-transition: all 0.5s;
 }
 
-body.light-theme .todo-list-main .todo-info .btn-clear-tasks {
+#theme-toggle-checkbox:checked + span.theme-slider {
+    background-color: var(--light-theme-secondary-color);
+}
+
+#theme-toggle-checkbox:checked + span.theme-slider::before {
+    transform: translateX(-1.5rem);
+    -webkit-transform: translateX(-1.5rem);
+    -moz-transform: translateX(-1.5rem);
+    -ms-transform: translateX(-1.5rem);
+    -o-transform: translateX(-1.5rem);
     background-color: var(--light-theme-primary-color);
-    color: var(--light-theme-secondary-color);
-    font-weight: 550;
 }
 
-.todo-list {
-    padding: 1rem 1rem 0 1rem;
+main.main {
+    background-color: var(--light-theme-secondary-color);
+    padding: 1rem;
+    margin: 2rem;
+    width: 95%;
+    max-width: 960px;
+    align-self: center;
 }
 
-body.light-theme .todo-list, body.light-theme .todo-info  {
-    color: var(--light-theme-secondary-color);
-}
-
-.todo-list li {
+.todo-list-header {
     display: flex;
     justify-content: space-between;
-    padding: 1rem 0;
-    border-top: 1px solid ;
+    margin-bottom: 2rem;
+    padding-top: 1rem;
 }
 
-body.light-theme .todo-list li {
-    border-top-color: rgba(21, 149, 229, 0.4);
-}
-
-.todo-list-main .todo-info {
+.todo-list-header .todo-date-active-tasks {
     display: flex;
-    margin: 0 1rem;
-    padding: 1rem 0;
+    flex: 2.5;
+    flex-direction: column;
+}
+
+.todo-list-header .todo-active {
+    color: var(--dark-theme-primary-color);
+    font-size: 0.8rem;
+}
+
+.todo-list-header .todo-filters {
+    flex: 1.5;
+    font-size: 0.9rem;
+    display: flex;
+    justify-content: flex-end;
+    gap: 0 2rem;
+    flex-wrap: wrap;
+}
+
+.todo-filters > * {
+    cursor: pointer;
+}
+
+#todo-form {
+    width: 100%;
+}
+
+.todo-task {
+    width: 100%;
+    max-width: 500px;
+    padding: 0.5rem;
+    height: 2rem;
+    margin: 0 0.25rem 0.25rem 0;
+}
+
+.btn-add-task, .btn-clear-tasks {
+    padding: 0.5rem;
+    font-weight: bold;
+    height: 2rem;
+    cursor: pointer;
+}
+
+.btn-add-task {
+    background-color: var(--light-theme-primary-color);
+    color:#fff;
+    border:none;
+}
+
+.btn-clear-tasks {
+    background-color: var(--dark-theme-primary-color);
+    color:var(--light-theme-secondary-color);
+    border:none;
+}
+
+ul.todo-list {
+    margin: 2rem 0 1rem 0;
+}
+
+li.todo-list-item {
+    display: flex;
+    flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    padding: 0.75rem 0.25rem;
+    border-top: 1px solid #787878;
 }
 
-body.light-theme .todo-list-main .todo-info {
-    border-top: 1px solid rgba(21, 149, 229, 0.4);
+li.todo-list-item.active, li.todo-list-item.active i.fas:hover  {
+    color: #69e451;
 }
 
-.todo-list-footer {
-    border-bottom-left-radius: 0.5rem;
-    border-bottom-right-radius: 0.5rem;
-    padding: 0.75rem;   
-    display: flex;
-    justify-content: space-around;
+li.todo-list-item:last-child {
+    margin-bottom: 0;
+    border-bottom: 1px solid #787878;
 }
 
-
-body.light-theme .todo-list-footer {
-    background-color: var(--light-theme-secondary-color);
-    color: var(--light-theme-background-color);
+li.todo-list-item i.fas {
+    color: #787878;
 }
 
-body.light-theme footer {
-    background-color: var(--light-theme-primary-color);
-    color: var(--light-theme-background-color);
-    width: 100%;
+li.todo-list-item p * {
+    display: inline-block;
+    position: relative;
+}
+
+p.todo-checkbox-item i.fas.fa-check-circle{
+    margin-right: 0.25rem;
+}
+
+a.todo-checkbox-item.checked + span.todo-item {
+    text-decoration: line-through;
+}
+
+footer.footer {
     padding: 1rem;
-    max-height: 10vh;
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--dark-theme-background-color);
+    background-color: var(--dark-theme-primary-color);
 }
+

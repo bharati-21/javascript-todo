@@ -9,51 +9,54 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
 
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+
         <link rel="stylesheet" href="./src/styles.css">
 
         <title>My Todos</title>
     </head>
-    <body class="light-theme">
-        <div id="todo-wrapper">
+    <body>
+        <div id="body-wrapper">
             <header class="hero">
-                <p class="hero-date"></p>
-                <h1 class="hero-head head">My Todo List</h1>
-                <label class="theme-toggler"></label>
+                <h1 class="hero-heading">
+                    My Todo List
+                </h1>
+                <!-- <label class="theme-toggler" for="theme-toggle-checkbox">
+                    <input type="checkbox" name="theme-toggle-checkbox" data-theme="light" id="theme-toggle-checkbox">
+                    <span class="theme-slider">
+                    </span>
+                </label> -->
             </header>
-
-            <main class="todos-main todo-container">
+            <main class="main">
                 <section class="todo-list-header">
-                    <input type="text" id="task-input" class="task-input todo-input-element" placeholder="Create a new todo...">
-                    <button class="btn-add-task todo-input-element" id="btn-add-task">
-                        Add Task
-                    </button>
+                    <article class="todo-date-active-tasks">
+                        <p class="todo-date"></p>
+                        <p class="todo-active"></p>
+                    </article>
+                    <article class="todo-filters">
+                        <a href="#" class="todo-incomplete">Incomplete Tasks</a>
+                        <a href="#" class="todo-complete">Complete Tasks</a>
+                    </article>
                 </section>
                 <section class="todo-list-main">
-                    <article class="todo-empty-message"></article>
-                    </article>
-                    <ul class="todo-list">
-                    </ul>
-                    <article class="todo-info">
-                        <p class="todo-items-left">
-                            <span class="num-pending-tasks"></span>
-                            Tasks
-                        </p>
-                        <button class="btn-clear-tasks">Clear Tasks</button>
-                    </article>
-                    <article class="todo-list-footer">
-                        <a href="" class="todos-all">All</a>
-                        <a href="" class="todos-active">Active</a>
-                        <a href="" class="todos-completed">Completed</a>                        
+                    <form id="todo-form" method="put">
+                        <input type="text" name="todo-task" placeholder="Enter a task..." id="todo-task" class="todo-task" required>
+                        <input type="submit" class="btn-add-task" value="Add Task"/>
+                        <input type="reset" class="btn-clear-tasks" value="Clear Tasks">
+                    </form>
+                    <article class="list-container">
+                        <ul class="todo-list"></ul>
                     </article>
                 </section>
             </main>
-            <footer class="todo-footer">
-                Made by <strong class="author">
-                    Bharati Subramanian
-                </strong>
+            <footer class="footer">
+                Made by <strong>Bharati Subramanian</strong>
             </footer>
         </div>
        
+        <script src="./src/todo-list-header.js"></script>
+        <script src="./src/add-task.js"></script>
         <script src="./src/script.js"></script>
+
     </body>
 </html>
