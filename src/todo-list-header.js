@@ -1,7 +1,7 @@
 const todoDate = document.querySelector('.todo-date');
-const todoActive = document.querySelector('.todo-active');
+const todoActive = document.querySelector('.todo-num-active-tasks');
 
-const month = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+const month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
 
 const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Friday', 'Saturday']
 
