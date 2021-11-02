@@ -222,6 +222,11 @@ li.todo-list-item {
     border-top: 1px solid #787878;
 }
 
+li.todo-list-item  p.todo-checkbox-item {
+    word-break: break-all;
+    margin-right: 5rem;
+}
+
 li.todo-list-item.completed, li.todo-list-item.completed i.fas:hover  {
     color: #E02401;
 }
@@ -245,8 +250,11 @@ li.todo-list-item i.fas {
 }
 
 li.todo-list-item p * {
-    display: inline-block;
     position: relative;
+}
+
+li.todo-list-item p {
+    display: flex;
 }
 
 p.todo-checkbox-item i.fas.fa-check-circle {
