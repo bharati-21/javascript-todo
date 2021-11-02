@@ -12,5 +12,5 @@ function handleCompleteTask(e) {
             liParent.classList.add('active');
         }
     }
-
+    addNumActiveTasks();
 } 

@@ -5,5 +5,5 @@ function removeTaskHandler(e) {
         const li = e.target.parentElement.parentElement.parentElement;
         todoList.removeChild(li);
     }
-
+    addNumActiveTasks();
 } 

@@ -182,6 +182,22 @@ main.main {
     width: 100%;
 }
 
+form.state-new-task >input[type="submit"].btn-edit-task {
+    display: none;
+}
+
+form.state-new-task >input[type="submit"].btn-add-task {
+    display: inline-block;
+}
+
+form.state-edit-task >input[type="submit"].btn-edit-task {
+    display: inline-block;
+}
+
+form.state-edit-task >input[type="submit"].btn-add-task {
+    display: none;
+}
+
 .todo-task {
     width: 100%;
     max-width: 500px;
@@ -190,14 +206,14 @@ main.main {
     margin: 0 0.25rem 0.25rem 0;
 }
 
-.btn-add-task, .btn-clear-tasks {
+.btn-add-task, .btn-edit-task, .btn-clear-tasks {
     padding: 0.5rem;
     font-weight: bold;
     height: 2rem;
     cursor: pointer;
 }
 
-.btn-add-task {
+.btn-add-task, .btn-edit-task {
     background-color: var(--light-theme-primary-color);
     color:#fff;
     border:none;

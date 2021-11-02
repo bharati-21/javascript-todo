@@ -39,9 +39,10 @@
                     </article>
                 </section>
                 <section class="todo-list-main">
-                    <form id="todo-form" method="put">
+                    <form id="todo-form" method="put" class="state-new-task">
                         <input type="text" name="todo-task" placeholder="Enter a task..." id="todo-task" class="todo-task" required>
                         <input type="submit" class="btn-add-task" value="Add Task"/>
+                        <input type="submit" class="btn-edit-task" value="Edit Task"/>
                         <input type="reset" class="btn-clear-tasks" value="Clear Tasks">
                     </form>
                     <article class="list-container">
@@ -57,6 +58,7 @@
         <script src="./src/todo-list-header.js"></script>
         <script src="./src/add-task.js"></script>
         <script src="./src/complete-task.js"></script>
+        <script src="./src/edit-task.js"></script>
         <script src="./src/remove-task.js"></script>
         <script src="./src/script.js"></script>
 

@@ -3,21 +3,31 @@ const todoList = document.querySelector('.todo-list');
 function addTaskHandler(e) {
     e.preventDefault();
     const todoForm = e.target;
-    const todoTask = todoForm.querySelector('.todo-task').value;
-    addTaskToList(todoTask);
+    const todoTask = todoForm.querySelector('.todo-task');
+    const task = todoTask.value;
+    if(todoForm.classList.contains('state-new-task')) {
+        addTaskToList(task);
+        addNumActiveTasks();
+    }
+    else {
+        addTaskToList(task, todoStatus);
+        todoForm.classList.remove('state-edit-task');
+        todoForm.classList.add('state-new-task');
+        addNumActiveTasks();
+    }
+    todoTask.value = "";
 }
 
 
-function addTaskToList(task) {
-    todoList.innerHTML += `
-        <li data-key=${generateUUID()} id=${generateUUID()} class="todo-list-item active">
+function addTaskToList(task, todoStatus) {
+    if(!todoStatus) todoStatus = 'active';
+    const li = `
+        <li data-key=${generateUUID()} id=${generateUUID()} class="todo-list-item ${todoStatus}">
             <p class="todo-checkbox-item">
                 <a class="todo-checkbox-icon">
                     <i class="fas fa-check-circle"></i>
                 </a>
-                <span class="todo-item">
-                    ${task}
-                </span>
+                <span class="todo-item">${task}</span>
             </p>
             <p class="todo-edit-delete-icons">
                 <a class="todo-edit-icon">
@@ -28,7 +38,8 @@ function addTaskToList(task) {
                 </a>
             </p>
         </li>
-    `
+    `;
+    todoList.innerHTML += li;
 }
 
 
