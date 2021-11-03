@@ -4,7 +4,9 @@ todoForm.addEventListener('submit', addTaskHandler);
 
 todoForm.addEventListener('reset', clearTasks);
 
+
 function clearTasks(e) {
     e.preventDefault();
     todoList.innerHTML = "";
+    addNumActiveTasks();
 }

@@ -1,7 +1,8 @@
 :root {
     /* --light-theme-primary-color: #1EAFED; */
     --light-theme-primary-color: #1597E5;
-    --light-theme-background-color: #EFEFEF;
+    /* --light-theme-background-color: #EFEFEF; */
+    --light-theme-background-color: #E6E6E6;
     --light-theme-secondary-color: #082032;
     --light-theme-todo-list-background: #fff;
 
@@ -69,7 +70,7 @@ header.hero {
     justify-content: space-between;
     align-items: center;
     padding: 1rem 2rem;
-    border-bottom: 1px solid var(--light-theme-secondary-color);
+    border-bottom: 2px solid var(--light-theme-secondary-color);
 }
 
 /* Theme Toggle */
@@ -155,7 +156,7 @@ main.main {
     margin-bottom: 2rem;
     flex-wrap: wrap;
     padding-top: 1rem;
-    font-size: 0.8rem;
+    font-size: 0.9rem;
 }
 
 .todo-list-header .todo-date-active-tasks {
@@ -166,12 +167,12 @@ main.main {
 
 .todo-list-header .todo-num-active-tasks {
     color: var(--dark-theme-primary-color);
-    font-size: 0.8rem;
+    font-size: 0.9rem;
 }
 
 .todo-list-header .todo-filters {
     flex: 2;
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     display: flex;
     justify-content: flex-end;
     gap:0 2rem;
@@ -242,8 +243,14 @@ form.state-edit-task >input[type="submit"].btn-add-task {
     border:none;
 }
 
+.todo-empty-message {
+    /* text-align: center; */
+    margin: 1rem 0 0.5rem;
+    color: #fff;
+}
+
 ul.todo-list {
-    margin: 2rem 0 1rem 0;
+    margin: 1rem 0 1rem 0;
 }
 
 li.todo-list-item {
@@ -304,6 +311,6 @@ footer.footer {
     text-align: center;
     font-size: 0.9rem;
     color: var(--dark-theme-background-color);
-    background-color: var(--dark-theme-primary-color);
+    background-color: #fff;
 }
 

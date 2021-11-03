@@ -9,6 +9,8 @@ const today = new Date();
 todoDate.innerText = `${days[today.getDay()]}, ${month[today.getMonth()]} ${today.getDate()}`;
 
 todoActive.innerText = "0 Tasks";
+addEmptyListMessage(0);
+
 
 function addNumActiveTasks() {
     const activeTasks = calculateNumTasks();
@@ -21,5 +23,19 @@ function calculateNumTasks() {
     children.forEach(child => {
         activeTasks += child.classList.contains('active') ? 1: 0;
     })
+    addEmptyListMessage(activeTasks);
     return activeTasks;
 }
+
+function addEmptyListMessage(activeTasks) {
+    if(activeTasks === 0) {
+        document.querySelector('.list-container').style.display = 'none';
+        document.querySelector('.todo-empty-message').style.display = 'block';
+    }
+    else {
+        document.querySelector('.list-container').style.display = 'block';
+        document.querySelector('.todo-empty-message').style.display = 'none';
+    }
+}
+
+
