@@ -22,6 +22,7 @@ function addTaskHandler(e) {
 function addTaskToList(task, todoStatus='active') {
     // if(!todoStatus) todoStatus = 'active';
     const [todoId, todoDate] = generateUUID();
+    
     const li = `
         <li data-key=${todoId} id=${todoId} class="todo-list-item ${todoStatus}">
             <p class="todo-checkbox-item">
@@ -47,6 +48,7 @@ function addTaskToList(task, todoStatus='active') {
 
 function checkCurrentFilter() {
     const activeFilter = todoFilters.querySelector('.active-filter');
+
     if(activeFilter.classList.contains('todo-completed')) {
         filterCompletedTasks();
     }

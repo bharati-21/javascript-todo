@@ -27,11 +27,14 @@ function handleEditTask(e) {
         editingTaskId = li.getAttribute('data-key');
         todoTask.value = todoItem.innerText;
         todoForm.classList.remove('state-new-task');
-        todoForm.classList.add('state-edit-task');        
+        todoForm.classList.add('state-edit-task');   
+        addNumActiveTasks();
+        checkCurrentFilter();     
     }
-
-    addNumActiveTasks();
-    checkCurrentFilter();
+    else {
+        e.preventDefault();
+    }
+    
 } 
 
 function addEditedTaskToList(todo, status = todoStatus) {

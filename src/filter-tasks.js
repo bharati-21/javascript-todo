@@ -33,36 +33,56 @@ function filterActiveTasks() {
     const tasks = Array.from(todoList.children);
     todoList.classList.add('filtered-list');
     
-    tasks.map(task => {
+    let lastActiveTask = tasks[0];
+    tasks.forEach(task => {
         if(!task.classList.contains('active')) {
             task.style.display = 'none';
         }
         else {
             task.style.display = 'flex';
+            lastActiveTask = task;
+
+            if(task.classList.contains('border-bottom')) {
+                task.classList.remove('border-bottom');
+            }
         }
+        
     });
+
+    lastActiveTask.classList.add('border-bottom');
 }
 
 function filterCompletedTasks() {
     todoList.classList.add('filtered-list');
     const tasks = Array.from(todoList.children);
 
-    tasks.map(task => {
+    let lastCompletedTask = tasks[0];
+    tasks.forEach(task => {
         if(task.classList.contains('active')) {
             task.style.display = 'none';
         }
         else {
             task.style.display = 'flex';
+            lastCompletedTask = task;
+            if(task.classList.contains('border-bottom')) {
+                task.classList.remove('border-bottom');
+            }
         }
+        
     });
+
+    lastCompletedTask.classList.add('border-bottom');
 }
 
 function filterAllTasks() {
     todoList.classList.remove('filtered-list');
     const tasks = Array.from(todoList.children);
 
-    tasks.map(task=> {
+    tasks.forEach(task=> {
         task.style.display = 'flex';
+        if(task.classList.contains('border-bottom')) {
+            task.classList.remove('border-bottom');
+        }
     });
 }
 

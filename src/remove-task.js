@@ -5,6 +5,11 @@ function removeTaskHandler(e) {
         const li = e.target.parentElement.parentElement.parentElement;
         todoList.removeChild(li);
         addNewDeletedTodo(Number(li.getAttribute('data-key')));
+        addNumActiveTasks();
+        checkCurrentFilter();
     }
-    addNumActiveTasks();
+    else {
+        e.preventDefault();
+    }
+    
 } 

@@ -1,7 +1,42 @@
-let todos = []
-let todosActive = [];
-let todosCompleted = [];
-let todosDeleted = [];
+const todoList = document.querySelector('.todo-list');
+
+
+let todos = JSON.parse(localStorage.getItem('my-todos')) || [];
+let todosActive = JSON.parse(localStorage.getItem('my-active-todos')) || [];
+let todosCompleted = JSON.parse(localStorage.getItem('my-completed-todos')) || [];
+let todosDeleted = JSON.parse(localStorage.getItem('my-deleted-todos')) || [];
+
+function displayPreviousTodos() {
+    if(todos.length!==0) {
+        todos.forEach(todo => {
+            displayTaskFromStorage(todo.task, todo.id, todo.status);
+        })
+    }
+}
+
+displayPreviousTodos();
+
+function displayTaskFromStorage(task, todoId, todoStatus) {
+    const li = `
+        <li data-key=${todoId} id=${todoId} class="todo-list-item ${todoStatus}">
+            <p class="todo-checkbox-item">
+                <a class="todo-checkbox-icon">
+                    <i class="fas fa-check-circle"></i>
+                </a>
+                <span class="todo-item">${task}</span>
+            </p>
+            <p class="todo-edit-delete-icons">
+                <a class="todo-edit-icon">
+                    <i class="fas fa-edit"></i>
+                </a>
+                <a class="todo-delete-icon">
+                    <i class="fas fa-trash-alt"></i>
+                </a>
+            </p>
+        </li>
+    `;
+    todoList.innerHTML += li;
+}
 
 function addNewTodo(todoId, todo, todoStatus, todoDate) {
     todos.push({
@@ -14,6 +49,9 @@ function addNewTodo(todoId, todo, todoStatus, todoDate) {
     if(todoStatus === 'active') {
         todosActive.push(todos[todos.length-1]);
     }
+
+    addTodosToStorage();
+    addActiveTodosToStorage();
 }
 
 
@@ -28,6 +66,9 @@ function addNewCompletedTodo(todoId) {
     completedTodo[0].status = 'completed';
     todosCompleted.push(completedTodo[0]);
     changeStatusInTodo(todoId, 'completed');
+
+    addActiveTodosToStorage();
+    addCompletedTodosToStorage();
 }
 
 function removeFromCompletedTodo(todoId) {
@@ -41,6 +82,9 @@ function removeFromCompletedTodo(todoId) {
     completedTodo[0].status = 'active';
     todosActive.push(completedTodo[0]);
     changeStatusInTodo(todoId, 'active');
+
+    addActiveTodosToStorage();
+    addCompletedTodosToStorage();
 } 
 
 function changeStatusInTodo(todoId, status) {
@@ -48,7 +92,9 @@ function changeStatusInTodo(todoId, status) {
         if(todo.id === todoId) {
             todos[index].status = status;
         }
-    })
+    });
+
+    addTodosToStorage();
 }
 
 function addNewDeletedTodo(todoId) {
@@ -58,6 +104,7 @@ function addNewDeletedTodo(todoId) {
             todoIndex = index;
         }
     });
+
     const deletedTodo = todos.splice(todoIndex, 1)[0];
     const today = new Date();
     deletedTodo.deletedDate = `${today.getDate()}-${today.getMonth()+1}-${today.getFullYear()}`;
@@ -78,6 +125,11 @@ function addNewDeletedTodo(todoId) {
         }
     });
     if(todoIndex!==-1) todosCompleted.splice(todoIndex,1);
+
+    addTodosToStorage();
+    addActiveTodosToStorage();
+    addCompletedTodosToStorage();
+    addDeletedTodosToStorage();
 }
 
 function clearTodos() {
@@ -89,6 +141,11 @@ function clearTodos() {
 
     todosActive = [];
     todosCompleted = [];
+
+    addTodosToStorage();
+    addActiveTodosToStorage();
+    addCompletedTodosToStorage();
+    addDeletedTodosToStorage();
 }
 
 function editTodo(todoId, task, status=todoStatus) {
@@ -111,6 +168,25 @@ function editTodo(todoId, task, status=todoStatus) {
         if(todo.id === todoId) {
             todos[index].task = task;
         }
-    })
+    });
+
+    addTodosToStorage();
+    addActiveTodosToStorage();
+    addCompletedTodosToStorage();
 }
 
+function addTodosToStorage() {
+    localStorage.setItem("my-todos", JSON.stringify(todos));
+}
+
+function addActiveTodosToStorage() {
+    localStorage.setItem("my-active-todos", JSON.stringify(todosActive));
+}
+
+function addCompletedTodosToStorage() {
+    localStorage.setItem('my-completed-todos', JSON.stringify(todosCompleted));
+}
+
+function addDeletedTodosToStorage() {
+    localStorage.setItem('my-deleted-todos', JSON.stringify(todosDeleted))
+}

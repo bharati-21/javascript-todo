@@ -15,6 +15,11 @@ function handleCompleteTask(e) {
 
             removeFromCompletedTodo(li.getAttribute('data-key'))
         }
+        checkCurrentFilter();
+        addNumActiveTasks();
     }
-    addNumActiveTasks();
+    else {
+        e.preventDefault();
+    }
+    
 } 

@@ -287,6 +287,12 @@ ul li:last-child {
     border-bottom: 1px solid #787878 !important;
 }
 
+
+ul.filtered-list li.border-bottom {
+    margin-bottom: 0;
+    border-bottom: 1px solid #787878 !important;
+}
+
 li.todo-list-item i.fas {
     color: #787878;
     cursor: pointer;

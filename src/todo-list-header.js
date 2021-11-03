@@ -1,6 +1,5 @@
 const todoDate = document.querySelector('.todo-date');
 const todoActive = document.querySelector('.todo-num-tasks');
-const todoList = document.querySelector('.todo-list');
 const todoFilters = document.querySelector('.todo-filters');
 
 
@@ -9,8 +8,8 @@ const month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', '
 const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Friday', 'Saturday']
 
 const today = new Date();
-let activeTasks = 0;
-let completedTasks = 0;
+let activeTasks = todosActive.length;
+let completedTasks = todosCompleted.length;
 
 todoDate.innerText = `${days[today.getDay()]}, ${month[today.getMonth()]} ${today.getDate()}`;
 todoActive.innerText = activeTasks + ' Active Tasks';
