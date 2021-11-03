@@ -1,6 +1,5 @@
 const todoList = document.querySelector('.todo-list');
 
-
 let todos = JSON.parse(localStorage.getItem('my-todos')) || [];
 let todosActive = JSON.parse(localStorage.getItem('my-active-todos')) || [];
 let todosCompleted = JSON.parse(localStorage.getItem('my-completed-todos')) || [];
@@ -72,7 +71,7 @@ function addNewCompletedTodo(todoId) {
 }
 
 function removeFromCompletedTodo(todoId) {
-    let todoIndex = 0;
+    let todoIndex = -1;
     todosCompleted.forEach((todo,index) =>{ 
         if(todo.id === todoId) {
             todoIndex = index;
@@ -149,7 +148,6 @@ function clearTodos() {
 }
 
 function editTodo(todoId, task, status=todoStatus) {
-    console.log(task);
     if(status === 'completed') {
         todosCompleted.forEach((todo, index) => {
             if(todo.id === todoId) {

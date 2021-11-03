@@ -13,7 +13,7 @@ function handleCompleteTask(e) {
             li.classList.remove('completed');
             li.classList.add('active');
 
-            removeFromCompletedTodo(li.getAttribute('data-key'))
+            removeFromCompletedTodo(Number(li.getAttribute('data-key')));
         }
         checkCurrentFilter();
         addNumActiveTasks();
