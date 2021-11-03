@@ -9,4 +9,5 @@ function clearTasks(e) {
     e.preventDefault();
     todoList.innerHTML = "";
     addNumActiveTasks();
+    clearTodos();
 }

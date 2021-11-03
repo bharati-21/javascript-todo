@@ -1,7 +1,5 @@
 :root {
-    /* --light-theme-primary-color: #1EAFED; */
     --light-theme-primary-color: #1597E5;
-    /* --light-theme-background-color: #EFEFEF; */
     --light-theme-background-color: #E6E6E6;
     --light-theme-secondary-color: #082032;
     --light-theme-todo-list-background: #fff;
@@ -78,8 +76,9 @@ label.theme-toggler {
     position: relative;
     display: flex;
     width: 3rem;
+    min-width: 3rem;
     justify-content: space-between;
-    height: 1.5rem;
+    min-height: 1.5rem;
 }
 
 #theme-toggle-checkbox {
@@ -111,7 +110,8 @@ span.theme-slider {
 span.theme-slider::before {
     background-color: #1597E5;
     width: 1.5rem;
-    height: 1.5rem;
+    min-width: 1.5rem;
+    min-height: 1.5rem;
     top: 0;
     right: 0;
     border-radius: 1rem;
@@ -165,9 +165,9 @@ main.main {
     flex-direction: column;
 }
 
-.todo-list-header .todo-num-active-tasks {
+.todo-list-header .todo-num-tasks {
     color: var(--dark-theme-primary-color);
-    font-size: 0.9rem;
+    font-size: 0.75rem;
 }
 
 .todo-list-header .todo-filters {
@@ -235,6 +235,7 @@ form.state-edit-task >input[type="submit"].btn-add-task {
     background-color: var(--light-theme-primary-color);
     color:#fff;
     border:none;
+    margin-right: 0.15rem;
 }
 
 .btn-clear-tasks {
@@ -247,6 +248,8 @@ form.state-edit-task >input[type="submit"].btn-add-task {
     /* text-align: center; */
     margin: 1rem 0 0.5rem;
     color: #fff;
+    border-top: 1px solid var(--light-theme-background-color);
+    padding-top: 0.75rem;
 }
 
 ul.todo-list {
@@ -279,9 +282,9 @@ li.todo-list-item.completed  p.todo-checkbox-item > span.todo-item {
     text-decoration: line-through;
 }
 
-li.todo-list-item:last-child {
+ul li:last-child {
     margin-bottom: 0;
-    border-bottom: 1px solid #787878;
+    border-bottom: 1px solid #787878 !important;
 }
 
 li.todo-list-item i.fas {
@@ -314,3 +317,45 @@ footer.footer {
     background-color: #fff;
 }
 
+
+@media screen and (max-width: 650px) {
+    .todo-list-header .todo-filters {
+        flex-direction: column;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    header.hero {
+        flex-direction: column;
+    }
+
+    header.hero label.theme-toggler {
+        margin-top: 1rem;
+    }
+
+    .todo-list-header .todo-date-active-tasks {
+        flex: 2;
+    }
+}
+
+@media screen and (max-width: 310px) {
+    .todo-list-header  {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .todo-list-header  > *{
+        text-align: center;
+    }
+
+    .todo-list-header .todo-date-active-tasks {
+        padding-bottom: 1rem;
+        border-bottom: 1px solid var(--light-theme-background-color);
+        width: 100%;
+    }
+
+    .todo-list-header .todo-filters {
+        padding-top: 1rem;
+    }
+}

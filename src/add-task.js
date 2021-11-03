@@ -1,16 +1,15 @@
-const todoList = document.querySelector('.todo-list');
-
 function addTaskHandler(e) {
     e.preventDefault();
     const todoForm = e.target;
     const todoTask = todoForm.querySelector('.todo-task');
     const task = todoTask.value;
     if(todoForm.classList.contains('state-new-task')) {
-        addTaskToList(task);
+        const [todoId, todoDate] = addTaskToList(task);
+        addNewTodo(todoId, task, todoStatus, todoDate);
         addNumActiveTasks();
     }
     else {
-        addTaskToList(task, todoStatus);
+        addEditedTaskToList(task, todoStatus);
         todoForm.classList.remove('state-edit-task');
         todoForm.classList.add('state-new-task');
         addNumActiveTasks();
@@ -20,10 +19,11 @@ function addTaskHandler(e) {
 }
 
 
-function addTaskToList(task, todoStatus) {
-    if(!todoStatus) todoStatus = 'active';
+function addTaskToList(task, todoStatus='active') {
+    // if(!todoStatus) todoStatus = 'active';
+    const [todoId, todoDate] = generateUUID();
     const li = `
-        <li data-key=${generateUUID()} id=${generateUUID()} class="todo-list-item ${todoStatus}">
+        <li data-key=${todoId} id=${todoId} class="todo-list-item ${todoStatus}">
             <p class="todo-checkbox-item">
                 <a class="todo-checkbox-icon">
                     <i class="fas fa-check-circle"></i>
@@ -41,12 +41,7 @@ function addTaskToList(task, todoStatus) {
         </li>
     `;
     todoList.innerHTML += li;
-}
-
-
-function generateUUID() {
-    const now = Date.now();
-    return Math.floor(Math.random() * Math.floor(Math.random() * now));
+    return [todoId, todoDate];
 }
 
 
@@ -61,4 +56,10 @@ function checkCurrentFilter() {
     else {
         filterAllTasks();
     }
+}
+
+function generateUUID() {
+    const now = Date.now();
+    const today = new Date();
+    return [Math.floor(Math.random() * Math.floor(Math.random() * now)), `${today.getDate()}-${today.getMonth()+1}-${today.getFullYear()}`];
 }

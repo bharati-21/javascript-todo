@@ -2,14 +2,18 @@ todoList.addEventListener('click', handleCompleteTask);
 
 function handleCompleteTask(e) {
     if(e.target.classList.contains('fa-check-circle')) {
-        const liParent = e.target.parentElement.parentElement.parentElement;
-        if(liParent.classList.contains('active')) {
-            liParent.classList.remove('active');
-            liParent.classList.add('completed');
+        const li = e.target.parentElement.parentElement.parentElement;
+        if(li.classList.contains('active')) {
+            li.classList.remove('active');
+            li.classList.add('completed');
+            addNewCompletedTodo(Number(li.getAttribute('data-key')));
+            
         }
         else {
-            liParent.classList.remove('completed');
-            liParent.classList.add('active');
+            li.classList.remove('completed');
+            li.classList.add('active');
+
+            removeFromCompletedTodo(li.getAttribute('data-key'))
         }
     }
     addNumActiveTasks();

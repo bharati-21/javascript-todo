@@ -1,41 +1,82 @@
 const todoDate = document.querySelector('.todo-date');
-const todoActive = document.querySelector('.todo-num-active-tasks');
+const todoActive = document.querySelector('.todo-num-tasks');
+const todoList = document.querySelector('.todo-list');
+const todoFilters = document.querySelector('.todo-filters');
+
 
 const month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
 
 const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Friday', 'Saturday']
 
 const today = new Date();
-todoDate.innerText = `${days[today.getDay()]}, ${month[today.getMonth()]} ${today.getDate()}`;
+let activeTasks = 0;
+let completedTasks = 0;
 
-todoActive.innerText = "0 Tasks";
-addEmptyListMessage(0);
+todoDate.innerText = `${days[today.getDay()]}, ${month[today.getMonth()]} ${today.getDate()}`;
+todoActive.innerText = activeTasks + ' Active Tasks';
+addNumActiveTasks();
 
 
 function addNumActiveTasks() {
-    const activeTasks = calculateNumTasks();
-    todoActive.innerText = `${activeTasks} ${activeTasks === 1 ? 'Task' : 'Tasks'}`;
+    calculateNumTasks();
+    todoActive.innerText = `${activeTasks} Active ${activeTasks === 1 ? 'Task' : 'Tasks'}`;
 }
 
 function calculateNumTasks() {
-    let activeTasks = 0;
     const children = Array.from(todoList.children);
+    let currentActiveTasks = 0;
+    let currentCompletedTasks = 0;
     children.forEach(child => {
-        activeTasks += child.classList.contains('active') ? 1: 0;
+        currentActiveTasks += child.classList.contains('active') ? 1: 0;
+        currentCompletedTasks += child.classList.contains('completed') ? 1: 0;
     })
-    addEmptyListMessage(activeTasks);
-    return activeTasks;
+    activeTasks = currentActiveTasks;
+    completedTasks = currentCompletedTasks;
+    addEmptyListMessage();
 }
 
-function addEmptyListMessage(activeTasks) {
-    if(activeTasks === 0) {
-        document.querySelector('.list-container').style.display = 'none';
-        document.querySelector('.todo-empty-message').style.display = 'block';
+function addEmptyListMessage() {
+    const listContainer = document.querySelector('.list-container');
+    const todoEmptyMessage = document.querySelector('.todo-empty-message');
+
+    if(todoFilters.classList.contains('todo-completed-filter')) {
+        if(completedTasks === 0) {
+            todoEmptyMessage.innerText = 'No Completed Tasks!';
+            listContainer.style.display = 'none';
+            todoEmptyMessage.style.display = 'block';
+        }
+        else {
+            listContainer.style.display = 'block';
+            todoEmptyMessage.style.display = 'none';
+        }
+
+    }
+    else if(todoFilters.classList.contains('todo-active-filter')){ 
+        if(activeTasks === 0) {
+            todoEmptyMessage.innerText = 'No Active Tasks!';
+            listContainer.style.display = 'none';
+            todoEmptyMessage.style.display = 'block';
+        }
+        else {
+            listContainer.style.display = 'block';
+            todoEmptyMessage.style.display = 'none';
+        }
+
     }
     else {
-        document.querySelector('.list-container').style.display = 'block';
-        document.querySelector('.todo-empty-message').style.display = 'none';
+        if(activeTasks === 0 && completedTasks === 0) {
+            todoEmptyMessage.innerText = 'No Tasks!';
+            listContainer.style.display = 'none';
+            todoEmptyMessage.style.display = 'block';
+        }
+        else {
+            listContainer.style.display = 'block';
+            todoEmptyMessage.style.display = 'none';
+        }
+
     }
+    
 }
+
 
 
