@@ -15,6 +15,7 @@ function addTaskHandler(e) {
         todoForm.classList.add('state-new-task');
         addNumActiveTasks();
     }
+    checkCurrentFilter();
     todoTask.value = "";
 }
 
@@ -46,4 +47,18 @@ function addTaskToList(task, todoStatus) {
 function generateUUID() {
     const now = Date.now();
     return Math.floor(Math.random() * Math.floor(Math.random() * now));
+}
+
+
+function checkCurrentFilter() {
+    const activeFilter = todoFilters.querySelector('.active-filter');
+    if(activeFilter.classList.contains('todo-completed')) {
+        filterCompletedTasks();
+    }
+    else if(activeFilter.classList.contains('todo-active')) {
+        filterActiveTasks();
+    }
+    else {
+        filterAllTasks();
+    }
 }

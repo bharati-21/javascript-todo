@@ -21,4 +21,5 @@ function handleEditTask(e) {
     }
 
     addNumActiveTasks();
+    checkCurrentFilter();
 } 
