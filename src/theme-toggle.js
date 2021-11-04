@@ -9,5 +9,4 @@ function toggleTheme() {
     else {
         body.className = 'light-theme';
     }
-    console.log(body);
 }
