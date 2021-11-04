@@ -58,6 +58,5 @@ function addEditedTaskToList(todo, status = todoStatus) {
     `;
     todoList.innerHTML += li;
 
-    console.log(todo)
     editTodo(Number(editingTaskId), todo);
 }

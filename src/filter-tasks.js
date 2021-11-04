@@ -2,31 +2,34 @@ todoFilters.addEventListener('click', handleFiltering);
 
 function handleFiltering(e) {
     const target = e.target;
-    Array.from(todoFilters.children).forEach(childNode => {
-        if(childNode === target) {
-            childNode.classList.add('active-filter');
-        }
-        else {
-            if(childNode.classList.contains('active-filter')) {
-                childNode.classList.remove('active-filter');
+    if(!target.classList.contains('todo-filters')) {
+        Array.from(todoFilters.children).forEach(childNode => {
+            if(childNode === target) {
+                childNode.classList.add('active-filter');
             }
-        }
-    })
+            else {
+                if(childNode.classList.contains('active-filter')) {
+                    childNode.classList.remove('active-filter');
+                }
+            }
+        })
+        
 
-    if(target.classList.contains('todo-all')) {
-        filterAllTasks();
-        todoFilters.className = "todo-filters text-align-right todo-all-filter";
+        if(target.classList.contains('todo-all')) {
+            filterAllTasks();
+            todoFilters.className = "todo-filters text-align-right todo-all-filter";
+        }
+        else if(target.classList.contains('todo-active')) {
+            filterActiveTasks();
+            todoFilters.className = "todo-filters text-align-right todo-active-filter";
+        }
+        else if(target.classList.contains('todo-completed')) {
+            filterCompletedTasks();
+            todoFilters.className = "todo-filters text-align-right todo-completed-filter";
+        } 
+        
+        addEmptyListMessage();
     }
-    else if(target.classList.contains('todo-active')) {
-        filterActiveTasks();
-        todoFilters.className = "todo-filters text-align-right todo-active-filter";
-    }
-    else if(target.classList.contains('todo-completed')) {
-        filterCompletedTasks();
-        todoFilters.className = "todo-filters text-align-right todo-completed-filter";
-    } 
-    
-    addEmptyListMessage();
 }
 
 function filterActiveTasks() {
@@ -49,6 +52,7 @@ function filterActiveTasks() {
         
     });
 
+    if(lastActiveTask)
     lastActiveTask.classList.add('border-bottom');
 }
 
@@ -71,6 +75,7 @@ function filterCompletedTasks() {
         
     });
 
+    if(lastCompletedTask)
     lastCompletedTask.classList.add('border-bottom');
 }
 
