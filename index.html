@@ -20,14 +20,16 @@
     <body class="light-theme">
         <div id="body-wrapper">
             <header class="hero">
-                <h1 class="hero-heading">
-                    My Todo List
-                </h1>
-                <label class="theme-toggler" for="theme-toggle-checkbox">
-                    <input type="checkbox" name="theme-toggle-checkbox" data-theme="light" id="theme-toggle-checkbox">
-                    <span class="theme-slider">
-                    </span>
-                </label>
+                <div class="hero-container container">
+                    <h1 class="hero-heading">
+                        My Todo List
+                    </h1>
+                    <label class="theme-toggler" for="theme-toggle-checkbox">
+                        <input type="checkbox" name="theme-toggle-checkbox" data-theme="light" id="theme-toggle-checkbox">
+                        <span class="theme-slider">
+                        </span>
+                    </label>
+                </div>
             </header>
             <main class="main">
                 <section class="todo-list-header">
@@ -36,9 +38,9 @@
                         <p class="todo-num-tasks"></p>
                     </article>
                     <article class="todo-filters text-align-right todo-all-filter">
-                        <a href="#" class="active-filter todo-all">All Tasks</a>
-                        <a href="#" class="todo-active">Active Tasks</a>
-                        <a href="#" class="todo-completed">Completed Tasks</a>
+                        <a href="#" class="active-filter todo-all">All</a>
+                        <a href="#" class="todo-active">Active</a>
+                        <a href="#" class="todo-completed">Completed</a>
                     </article>
                 </section>
                 <section class="todo-list-main">

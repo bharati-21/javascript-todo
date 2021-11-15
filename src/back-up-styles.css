@@ -37,7 +37,7 @@ html {
 }
 
 .container {
-    max-width: 960px;
+    max-width: 600px;
     margin: 0 auto;
 }
 
@@ -86,11 +86,16 @@ body {
 }
 
 header.hero {
+    
+    padding: 1rem 2rem;
+}
+
+header.hero .hero-container {
+    text-align: center;
+
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 2rem;
-    text-align: center;
 }
 
 body.light-theme header.hero {
@@ -186,7 +191,7 @@ main.main {
     padding: 1rem;
     margin: 2rem;
     width: 95%;
-    max-width: 960px;
+    max-width: 600px;
     align-self: center;
     box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
 }
@@ -196,8 +201,9 @@ main.main {
     justify-content: space-between;
     margin-bottom: 2rem;
     flex-wrap: wrap;
+    align-items: flex-start;
     padding-top: 1rem;
-    font-size: 0.9rem;
+    font-size: 1rem;
 }
 
 body.light-theme .todo-list-header {
@@ -288,9 +294,10 @@ form.state-edit-task >input[type="submit"].btn-add-task {
 
 .todo-task {
     width: 100%;
-    max-width: 500px;
+    max-width: 100%;
     padding: 0.5rem;
     height: 2rem;
+    
     margin: 0 0.25rem 0.25rem 0;
 }
 
@@ -373,7 +380,9 @@ body.dark-theme li.todo-list-item {
 }
 
 li.todo-list-item  p.todo-checkbox-item {
-    word-break: break-all;
+    /* word-break:break-all; */
+    word-wrap: break-word;
+    
     margin-right: 5rem;
 }
 
@@ -474,8 +483,8 @@ body.dark-theme footer.footer {
     }
 }
 
-@media screen and (max-width: 400px) {
-    header.hero {
+@media screen and (max-width: 420px) {
+    header.hero .hero-container {
         flex-direction: column;
     }
 
@@ -493,6 +502,11 @@ body.dark-theme footer.footer {
         flex-direction: column;
         justify-content: center;
         align-items: center;
+    }
+
+
+    li.todo-list-item {
+        align-items: flex-start;
     }
 
     .todo-list-header  > *{
